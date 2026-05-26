@@ -49,7 +49,7 @@ export function Navbar() {
             alt="Octava Consulting"
             width={32}
             height={32}
-            className="invert brightness-0 invert w-7 h-7 object-contain transition-opacity group-hover:opacity-70"
+            className="w-7 h-7 object-contain transition-opacity group-hover:opacity-70"
             priority
           />
           <span className="text-white font-bold text-[17px] tracking-[-0.3px]">
