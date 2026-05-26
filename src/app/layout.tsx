@@ -20,8 +20,8 @@ const dmMono = DM_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Octava Consulting — Azure Cloud, DevOps & AI',
-    template: '%s | Octava Consulting',
+    default: 'Octava Cloud — Azure Cloud, DevOps & AI',
+    template: '%s | Octava Cloud',
   },
   description:
     'Premium Azure cloud engineering and AI automation solutions for modern businesses and government. Brisbane-based cloud consultancy specialising in Azure, DevOps automation and AI.',
