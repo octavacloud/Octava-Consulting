@@ -11,6 +11,7 @@ images), so recipients always see it without attachments.
 |------|---------|---------|
 | `octava-dark.html` | **V01 Dark Card** — full black card, contact rows, `BOOK A CALL →` button | New emails. The statement piece. |
 | `octava-dark-animated.html` | **V01-A Dark Card, Animated** — same card, logo is a GIF: clock-tick rotation plus a scan line sweeping up and down | New emails, when you want the kinetic version. **Push to deploy first** (see below). |
+| `octava-dark-fullsweep.html` | **V01-X Dark Card, Full Sweep** — the whole card is one GIF; the beam sweeps edge to edge while the logo ticks | Maximum effect. Whole card is a single image/click target; real links sit in a line below. **Push to deploy first.** |
 | `octava-light.html` | **V02 Light Chip** — black logo chip, everything else blends into the email | Conservative recipients (government, enterprise). |
 | `octava-compact.html` | **V03 Compact** — two-line strip | Replies / forwards. |
 
@@ -26,6 +27,15 @@ Client support:
 - **Animates:** Gmail, Outlook Web / new Outlook, Apple Mail, Outlook mobile.
 - **First frame only:** classic Outlook desktop (Word engine doesn't play GIFs). Frame 1 is
   the normal upright logo, so it degrades to exactly the static V01 look.
+
+## The full-sweep variant
+
+`public/images/signature-card-scan.gif` (279 KB, 960×404 rendered at 2× for a crisp 480×202
+display) is the entire V01 card as one image — pinwheel ticking plus the beam sweeping the
+full card width, two sweeps per 12s loop. Because it's a single image: one click target (the
+contact page), the mailto/web links live in a small text line under the card, and recipients
+can't copy the email address out of the image. Classic Outlook shows the static first frame.
+Text is rendered with real Segoe UI / Consolas at 2×, so it stays sharp on retina screens.
 
 ## Install — New Outlook (Windows) / Outlook Web
 
