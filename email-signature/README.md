@@ -10,15 +10,18 @@ images), so recipients always see it without attachments.
 | File | Variant | Use for |
 |------|---------|---------|
 | `octava-dark.html` | **V01 Dark Card** — full black card, contact rows, `BOOK A CALL →` button | New emails. The statement piece. |
-| `octava-dark-animated.html` | **V01-A Dark Card, Animated** — same card, logo is a GIF that ticks 30° every second like a clock | New emails, when you want the kinetic version. **Push to deploy first** (see below). |
+| `octava-dark-animated.html` | **V01-A Dark Card, Animated** — same card, logo is a GIF: clock-tick rotation plus a scan line sweeping up and down | New emails, when you want the kinetic version. **Push to deploy first** (see below). |
 | `octava-light.html` | **V02 Light Chip** — black logo chip, everything else blends into the email | Conservative recipients (government, enterprise). |
 | `octava-compact.html` | **V03 Compact** — two-line strip | Replies / forwards. |
 
 ## The animated variant
 
-`public/images/logo-icon-spin.gif` (101 KB, 12 frames, 1 tick/second, full turn per dozen
-seconds) is committed with the site — **push the repo so Vercel deploys it** before installing
-`octava-dark-animated.html`, otherwise recipients get a broken image. Client support:
+`public/images/logo-icon-scan.gif` (104 KB, 24 frames) combines two movements: the pinwheel
+ticks 30° every second like a clock, and a scan line sweeps top → bottom → top once per 12s
+loop, mirroring the website's scanner. It is committed with the site — **push the repo so
+Vercel deploys it** before installing `octava-dark-animated.html`, otherwise recipients get a
+broken image. (`logo-icon-spin.gif` is the earlier tick-only version, kept for reference.)
+Client support:
 
 - **Animates:** Gmail, Outlook Web / new Outlook, Apple Mail, Outlook mobile.
 - **First frame only:** classic Outlook desktop (Word engine doesn't play GIFs). Frame 1 is
