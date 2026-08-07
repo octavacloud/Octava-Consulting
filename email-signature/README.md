@@ -30,9 +30,11 @@ Client support:
 
 ## The full-sweep variant
 
-`public/images/signature-card-scan.gif` (279 KB, 960×404 rendered at 2× for a crisp 480×202
+`public/images/signature-card-scan.gif` (318 KB, 960×404 rendered at 2× for a crisp 480×202
 display) is the entire V01 card as one image — pinwheel ticking plus the beam sweeping the
-full card width, two sweeps per 12s loop. Because it's a single image: one click target (the
+full card width, two sweeps per 12s loop, with 16px rounded corners baked into the image
+(the only way to get border-radius past Outlook). Corners are transparent with a white-blended
+anti-aliasing fringe: flawless on white emails, a faint hairline at worst in dark-mode clients. Because it's a single image: one click target (the
 contact page), the mailto/web links live in a small text line under the card, and recipients
 can't copy the email address out of the image. Classic Outlook shows the static first frame.
 Text is rendered with real Segoe UI / Consolas at 2×, so it stays sharp on retina screens.
