@@ -12,6 +12,7 @@ images), so recipients always see it without attachments.
 | `octava-dark.html` | **V01 Dark Card** — full black card, contact rows, `BOOK A CALL →` button | New emails. The statement piece. |
 | `octava-dark-animated.html` | **V01-A Dark Card, Animated** — same card, logo is a GIF: clock-tick rotation plus a scan line sweeping up and down | New emails, when you want the kinetic version. **Push to deploy first** (see below). |
 | `octava-dark-fullsweep.html` | **V01-X Dark Card, Full Sweep** — the whole card is one GIF; the beam sweeps edge to edge while the logo ticks | Maximum effect. Whole card is a single image/click target; real links sit in a line below. **Push to deploy first.** |
+| `octava-outline.html` | **V04 Outline Card** — light outlined card with icon rail, brand lockup, and the diagonal-sliced chip | A lighter, editorial look. **Push to deploy first** (uses the `sig-*.png` assets). |
 | `octava-light.html` | **V02 Light Chip** — black logo chip, everything else blends into the email | Conservative recipients (government, enterprise). |
 | `octava-compact.html` | **V03 Compact** — two-line strip | Replies / forwards. |
 
