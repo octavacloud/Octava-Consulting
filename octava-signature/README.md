@@ -3,8 +3,10 @@
 Premium monochrome signature with the exploded-assembly hero animation: the four
 geometric components of the OCTAVA symbol drift in shallow 3D space, magnetically
 assemble with a subtle mechanical lock, receive one quiet light sweep, and hold on
-the completed symbol. The GIF carries **no loop extension**, so it plays **once**
-and rests on the assembled logo (brief Option A).
+the completed symbol for six seconds before the cycle replays (brief Option B —
+a ~9.5s loop that is mostly static). The loop is infinite on purpose: email
+clients overlay a "play" button on a *finished* animation, and a looping GIF
+never finishes, so the symbol always stays clean.
 
 ## Files
 
@@ -27,10 +29,10 @@ and rests on the assembled logo (brief Option A).
 | `icon-web.png` | 48×48 → 20×20 | 3 KB | https://www.octava.cloud/images/email/icon-web.png |
 | `icon-email.png` | 48×48 → 20×20 | 1 KB | https://www.octava.cloud/images/email/icon-email.png |
 
-GIF timeline (35 frames): 0.7s exploded hold → 1.0s eased assembly with ~1.5px
-overshoot → 0.3s settle lock → 0.4s rest → 0.6s vertical light sweep → 4s final
-hold, then stops. First frame = elegant exploded view (what classic Outlook
-shows); last frame = pristine assembled symbol.
+GIF timeline (35 frames, ~9.5s infinite loop): 0.7s exploded hold → 1.0s eased
+assembly with ~1.5px overshoot → 0.3s settle lock → 0.4s rest → 0.6s vertical
+light sweep → 6s still hold → replay. First frame = elegant exploded view (what
+classic Outlook shows); the symbol is fully assembled ~70% of every cycle.
 
 ## Hosting
 
@@ -82,6 +84,7 @@ Signature → Create new → paste → Save.
 - [x] Every link explicit: symbol/wordmark/globe → https://octava.cloud, envelope/address → mailto
 - [x] Animation via GIF only — no CSS animation/JS/SVG dependencies
 - [x] First and last GIF frames both look professional on their own
+- [x] Infinite loop with 6s static hold — prevents client "play" overlay on ended GIFs
 - [x] GIF 493 KB (under the 500 KB target); all other assets ≤ 7 KB
 - [x] `mso-line-height-rule:exactly` guards line heights in Word engine
 - [x] Border-radius is decorative only — square fallback loses nothing
@@ -90,7 +93,7 @@ Signature → Create new → paste → Save.
 
 | Feature | Everywhere else | Classic Outlook |
 |---------|-----------------|-----------------|
-| Hero animation | Plays once, rests on assembled symbol | Static first frame (exploded view — still looks designed) |
+| Hero animation | Mostly-static ~9.5s loop | Static first frame (exploded view — still looks designed) |
 | Rounded card + capsule corners | 20px / 21px radius | Square corners |
 | Letter-spacing on labels | 2px tracking | Renders, may vary ±0.5px |
 | Border color | #E2E2E2 hairline | Identical |
