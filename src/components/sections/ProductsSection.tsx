@@ -3,54 +3,38 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import Image from 'next/image'
+import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
 import { SectionLabel } from '@/components/ui/SectionLabel'
+import { products, type Product } from '@/data/products'
 
-/**
- * Products built in-house by Octava.
- * To show a real logo, drop a PNG/SVG in /public/images/products/ and set `logo`.
- * Until then the card renders a typographic wordmark. Add `url` when live.
- */
-const products = [
-  {
-    slug: 'certifyme',
-    name: 'CertifyMe',
-    tagline: 'Master your certifications.',
-    description:
-      'A certification mastery platform that helps engineers plan, track and pass professional cloud certifications — structured study paths, progress tracking and exam readiness in one place.',
-    stack: ['Next.js', 'Azure', 'AI'],
-    status: 'In development',
-    url: undefined as string | undefined,
-    logo: undefined as string | undefined,
-  },
-  {
-    slug: 'meridian',
-    name: 'Meridian',
-    tagline: 'Global freight, orchestrated to the minute.',
-    description:
-      'A logistics orchestration platform with a 24/7 control tower — live shipment monitoring across air, ocean and overland freight, customs and final-mile, unified under one accountable view.',
-    stack: ['Next.js', 'Vercel', 'Real-time'],
-    status: 'Live',
-    url: 'https://meridian-logistics.vercel.app' as string | undefined,
-    logo: undefined as string | undefined,
-  },
-]
-
-function ProductCard({ product, index }: { product: typeof products[0]; index: number }) {
-  const Wrapper = product.url ? motion.a : motion.div
-  const linkProps = product.url
-    ? { href: product.url, target: '_blank', rel: 'noopener noreferrer' }
-    : {}
-
+export function ProductLogo({ product, size = 'card' }: { product: Product; size?: 'card' | 'hero' }) {
+  const isSquare = product.logo.width === product.logo.height
+  const tile = size === 'hero' ? 'h-24 px-7' : 'h-16 px-5'
+  const bg = product.logo.bg === 'light' ? 'bg-white' : 'bg-[#0a0a0a] border border-white/[0.08]'
+  const imgH = size === 'hero' ? (isSquare ? 'h-14' : 'h-10') : (isSquare ? 'h-9' : 'h-7')
   return (
-    <Wrapper
-      {...linkProps}
-      className="group relative block bg-[#050505] p-12 md:p-14 border-b border-r border-white/[0.06] min-h-[360px] flex flex-col justify-between overflow-hidden"
+    <div className={`inline-flex items-center justify-center ${tile} ${bg}`}>
+      <Image
+        src={product.logo.src}
+        alt={product.logo.alt}
+        width={product.logo.width}
+        height={product.logo.height}
+        className={`${imgH} w-auto object-contain`}
+        unoptimized={product.logo.src.endsWith('.svg')}
+      />
+    </div>
+  )
+}
+
+function ProductCard({ product, index }: { product: Product; index: number }) {
+  return (
+    <motion.article
+      className="group relative bg-[#050505] p-12 md:p-14 border-b border-r border-white/[0.06] min-h-[420px] flex flex-col justify-between overflow-hidden"
       initial={{ opacity: 0, y: 32 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
       transition={{ duration: 0.8, delay: index * 0.12, ease: [0.16, 1, 0.3, 1] }}
-      data-cursor-hover
     >
       {/* Hover glow */}
       <div
@@ -61,64 +45,58 @@ function ProductCard({ product, index }: { product: typeof products[0]; index: n
       />
 
       <div>
-        <div className="flex items-start justify-between mb-10">
-          <div>
-            <p className="font-mono text-[11px] tracking-[2px] text-white/20 mb-1">— PRODUCT {String(index + 1).padStart(2, '0')}</p>
-            <p className="font-mono text-[11px] tracking-[1px] text-white/25 uppercase">
-              Built by Octava &middot; {product.status}
-            </p>
+        <div className="flex items-start justify-between gap-6 mb-8">
+          <ProductLogo product={product} />
+          <div className="text-right">
+            <p className="font-mono text-[11px] tracking-[2px] text-white/20 mb-1">— {String(index + 1).padStart(2, '0')}</p>
+            <p className="font-mono text-[11px] tracking-[1px] text-white/30 uppercase">{product.status}</p>
           </div>
-          {product.url && (
-            <div className="w-10 h-10 border border-white/10 flex items-center justify-center opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
-              <ArrowUpRight size={14} className="text-white/60" />
-            </div>
-          )}
         </div>
 
-        {/* Logo or typographic wordmark */}
-        {product.logo ? (
-          <Image
-            src={product.logo}
-            alt={product.name}
-            width={220}
-            height={56}
-            className="h-12 w-auto object-contain mb-6"
-          />
-        ) : (
-          <h3 className="text-[clamp(30px,3.6vw,46px)] font-extrabold tracking-[-1.5px] leading-none mb-4">
-            {product.name}
-          </h3>
-        )}
-
-        <p className="font-mono text-[12px] tracking-[1px] text-white/50 uppercase mb-6">
-          {product.tagline}
+        <h3 className="text-[clamp(26px,3vw,38px)] font-extrabold tracking-[-1.2px] leading-none mb-2">
+          {product.name}
+        </h3>
+        <p className="font-mono text-[11px] tracking-[1.5px] text-white/45 uppercase mb-6">
+          {product.subtitle}
         </p>
 
-        <p className="text-[14px] text-white/38 leading-relaxed font-normal mb-8 max-w-[46ch]">
-          {product.description}
+        <p className="text-[14px] text-white/40 leading-relaxed font-normal mb-8 max-w-[52ch]">
+          {product.cardDescription}
         </p>
       </div>
 
-      <div className="flex flex-wrap items-center gap-2">
-        {product.stack.map(t => (
-          <span
-            key={t}
-            className="border border-white/[0.07] font-mono text-[10px] tracking-[0.5px] text-white/25 px-2.5 py-1"
+      <div>
+        <div className="flex flex-wrap gap-2 mb-8">
+          {product.stack.slice(0, 5).map(t => (
+            <span
+              key={t}
+              className="border border-white/[0.07] font-mono text-[10px] tracking-[0.5px] text-white/25 px-2.5 py-1"
+            >
+              {t}
+            </span>
+          ))}
+        </div>
+
+        <div className="flex flex-wrap items-center gap-x-8 gap-y-3">
+          <Link
+            href={`/products/${product.slug}`}
+            className="font-mono text-[11px] tracking-[1.5px] text-white uppercase border-b border-white/30 pb-1 hover:border-white transition-colors duration-300"
+            data-cursor-hover
           >
-            {t}
-          </span>
-        ))}
-        {product.url ? (
-          <span className="ml-auto font-mono text-[10px] tracking-[1.5px] text-white/40 uppercase group-hover:text-white transition-colors duration-300">
-            Visit product ↗
-          </span>
-        ) : (
-          <span className="ml-auto font-mono text-[10px] tracking-[1.5px] text-white/25 uppercase">
-            Coming soon
-          </span>
-        )}
+            Product details →
+          </Link>
+          <a
+            href={product.externalUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 font-mono text-[11px] tracking-[1.5px] text-white/45 uppercase hover:text-white transition-colors duration-300"
+            data-cursor-hover
+          >
+            {product.externalCta} <ArrowUpRight size={13} />
+          </a>
+        </div>
       </div>
-    </Wrapper>
+    </motion.article>
   )
 }
 
@@ -157,8 +135,8 @@ export function ProductsSection() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           >
-            We don&apos;t just advise — we build and run production software on the same
-            Azure, DevOps and AI foundations we recommend to clients.
+            We don&apos;t just advise — we design, build and run production software on the
+            same Azure, DevOps and AI foundations we recommend to clients.
           </motion.p>
         </div>
 

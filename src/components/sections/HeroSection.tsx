@@ -221,13 +221,13 @@ export function HeroSection() {
           transition={{ duration: 0.8, delay: 1.0, ease: [0.16, 1, 0.3, 1] }}
         >
           <Link
-            href="#contact"
+            href="/#contact"
             className="bg-white text-[#050505] px-8 py-4 text-[14px] font-bold tracking-[0.3px] hover:bg-white/88 transition-colors duration-300 inline-block"
           >
             Book a Consultation
           </Link>
           <Link
-            href="#services"
+            href="/#services"
             className="border border-white/20 text-white px-8 py-4 text-[14px] font-semibold tracking-[0.3px] hover:border-white/45 hover:bg-white/[0.03] transition-all duration-300 inline-block"
           >
             View Services

@@ -7,11 +7,11 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 
 const navLinks = [
-  { href: '#services', label: 'Services' },
-  { href: '#capabilities', label: 'Capabilities' },
-  { href: '#projects', label: 'Projects' },
-  { href: '#products', label: 'Products' },
-  { href: '#about', label: 'About' },
+  { href: '/#services', label: 'Services' },
+  { href: '/#capabilities', label: 'Capabilities' },
+  { href: '/#projects', label: 'Projects' },
+  { href: '/#products', label: 'Products' },
+  { href: '/#about', label: 'About' },
 ]
 
 export function Navbar() {
@@ -75,7 +75,7 @@ export function Navbar() {
         {/* CTA */}
         <div className="hidden md:flex items-center gap-4">
           <Link
-            href="#contact"
+            href="/#contact"
             className="border border-white/12 hover:border-white/30 hover:bg-white/5 text-white text-[13px] font-semibold tracking-[0.3px] px-5 py-2.5 transition-all duration-300"
           >
             Book a Call
@@ -126,7 +126,7 @@ export function Navbar() {
                 className="mt-8"
               >
                 <Link
-                  href="#contact"
+                  href="/#contact"
                   onClick={() => setMobileOpen(false)}
                   className="inline-block bg-white text-[#050505] px-8 py-4 font-bold text-[15px] tracking-[0.3px] hover:bg-white/88 transition-colors"
                 >
