@@ -17,7 +17,7 @@ const capabilities = [
 
 const stats = [
   { value: '100%', label: 'Azure focused' },
-  { value: 'AU', label: 'Based Brisbane' },
+  { value: 'AU', label: 'Sovereign hosting' },
   { value: '24h', label: 'Response time' },
 ]
 

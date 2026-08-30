@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     siteName: 'Octava Consulting',
     title: 'Octava Consulting — Azure Cloud, DevOps & AI',
     description:
-      'Premium Azure cloud engineering and AI automation solutions for modern businesses and government. Built in Brisbane.',
+      'Premium Azure cloud engineering and AI automation solutions for modern businesses and government. Built in Brisbane, deployed anywhere.',
     images: [
       {
         url: '/images/og-image.png',
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Octava Consulting — Azure Cloud, DevOps & AI',
     description:
-      'Premium Azure cloud engineering and AI automation solutions. Built in Brisbane.',
+      'Premium Azure cloud engineering and AI automation solutions. Built in Brisbane, deployed anywhere.',
     images: ['/images/og-image.png'],
   },
   robots: {

@@ -180,7 +180,7 @@ export function HeroSection() {
             animate={{ opacity: [1, 0.15, 1] }}
             transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
           />
-          Brisbane, AU — Azure Cloud Consulting
+          Azure Cloud Consulting — Australia-wide, from Brisbane
         </motion.div>
 
         {/* Headline */}

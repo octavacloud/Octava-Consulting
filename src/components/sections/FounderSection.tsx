@@ -98,7 +98,7 @@ export function FounderSection() {
             <h2 className="text-[clamp(28px,4vw,54px)] font-extrabold leading-[1.1] tracking-[-2px] mb-8">
               Built in Brisbane.
               <br />
-              <span className="text-white/30">Designed for modern cloud teams.</span>
+              <span className="text-white/30">Deployed anywhere.</span>
             </h2>
 
             <p className="text-[16px] text-white/42 leading-[1.8] font-normal mb-6">
@@ -129,7 +129,7 @@ export function FounderSection() {
                 Focus Areas
               </p>
               <div className="flex flex-wrap gap-3">
-                {['Microsoft Azure', 'Government Sector', 'Enterprise AI', 'Brisbane Based'].map(cert => (
+                {['Microsoft Azure', 'Government Sector', 'Enterprise AI', 'Australia-wide'].map(cert => (
                   <span
                     key={cert}
                     className="border border-white/[0.08] font-mono text-[11px] tracking-[0.5px] text-white/30 px-3 py-1.5"
