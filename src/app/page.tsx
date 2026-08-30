@@ -4,6 +4,7 @@ import { HeroSection } from '@/components/sections/HeroSection'
 import { ServicesSection } from '@/components/sections/ServicesSection'
 import { CapabilitiesSection } from '@/components/sections/CapabilitiesSection'
 import { ProjectsSection } from '@/components/sections/ProjectsSection'
+import { ProductsSection } from '@/components/sections/ProductsSection'
 import { FounderSection } from '@/components/sections/FounderSection'
 import { ContactSection } from '@/components/sections/ContactSection'
 
@@ -15,6 +16,7 @@ export default function Home() {
       <ServicesSection />
       <CapabilitiesSection />
       <ProjectsSection />
+      <ProductsSection />
       <FounderSection />
       <ContactSection />
       <Footer />

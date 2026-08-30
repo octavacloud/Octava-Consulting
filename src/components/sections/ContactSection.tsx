@@ -4,19 +4,42 @@ import { useRef, useState, FormEvent } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { SectionLabel } from '@/components/ui/SectionLabel'
 
+type Status = 'idle' | 'loading' | 'success' | 'error'
+
+const inputClass =
+  'w-full bg-white/[0.03] border border-white/[0.08] text-white px-4 py-3.5 text-[15px] font-[400] outline-none transition-colors duration-300 focus:border-white/25 placeholder:text-white/20 font-sans'
+const labelClass = 'block font-mono text-[10px] tracking-[1.5px] text-white/30 uppercase mb-2.5'
+
 export function ContactSection() {
   const sectionRef = useRef<HTMLElement>(null)
   const isInView = useInView(sectionRef, { once: true, margin: '-80px' })
-  const [submitted, setSubmitted] = useState(false)
-  const [loading, setLoading] = useState(false)
+  const [status, setStatus] = useState<Status>('idle')
+  const [errorMessage, setErrorMessage] = useState('')
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    setLoading(true)
-    // Simulate submission — replace with real API call or Formspree/EmailJS
-    await new Promise(r => setTimeout(r, 1000))
-    setLoading(false)
-    setSubmitted(true)
+    setStatus('loading')
+    setErrorMessage('')
+
+    const data = Object.fromEntries(new FormData(e.currentTarget).entries())
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      })
+      const json = await res.json().catch(() => ({}))
+      if (!res.ok) {
+        setErrorMessage(json.error ?? 'Something went wrong. Please email us directly at')
+        setStatus('error')
+        return
+      }
+      setStatus('success')
+    } catch {
+      setErrorMessage('Network error. Please check your connection or email us directly at')
+      setStatus('error')
+    }
   }
 
   return (
@@ -49,7 +72,7 @@ export function ContactSection() {
 
             <p className="text-[16px] text-white/40 leading-relaxed font-normal mb-12">
               Ready to modernise your cloud, automate your operations, or integrate AI into your workflows?
-              Let&apos;s start a conversation.
+              Tell us about the project and you&apos;ll hear back within one business day.
             </p>
 
             {/* Contact links */}
@@ -89,7 +112,7 @@ export function ContactSection() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           >
-            {submitted ? (
+            {status === 'success' ? (
               <div className="h-full flex flex-col justify-center items-start">
                 <motion.div
                   initial={{ opacity: 0, scale: 0.95 }}
@@ -104,41 +127,64 @@ export function ContactSection() {
                   </div>
                   <h3 className="text-[22px] font-bold tracking-[-0.5px] mb-3">Message received.</h3>
                   <p className="text-white/40 text-[14px] leading-relaxed">
-                    Thanks for reaching out. We'll be in touch within 24 hours.
+                    Thanks for reaching out. Marcelo will reply within one business day.
                   </p>
                 </motion.div>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-                <div>
-                  <label className="block font-mono text-[10px] tracking-[1.5px] text-white/30 uppercase mb-2.5">
-                    Name
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="Your full name"
-                    className="w-full bg-white/[0.03] border border-white/[0.08] text-white px-4 py-3.5 text-[15px] font-[400] outline-none transition-colors duration-300 focus:border-white/25 placeholder:text-white/20 font-sans"
-                  />
+              <form onSubmit={handleSubmit} className="relative flex flex-col gap-5">
+                {/* Honeypot: hidden from humans, filled by bots, rejected server-side */}
+                <div className="absolute -left-[9999px] top-0 h-0 w-0 overflow-hidden" aria-hidden="true">
+                  <label htmlFor="website">Website</label>
+                  <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div>
+                    <label htmlFor="name" className={labelClass}>Name</label>
+                    <input
+                      id="name"
+                      name="name"
+                      type="text"
+                      required
+                      minLength={2}
+                      autoComplete="name"
+                      placeholder="Your full name"
+                      className={inputClass}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="company" className={labelClass}>Company</label>
+                    <input
+                      id="company"
+                      name="company"
+                      type="text"
+                      autoComplete="organization"
+                      placeholder="Organisation (optional)"
+                      className={inputClass}
+                    />
+                  </div>
                 </div>
 
                 <div>
-                  <label className="block font-mono text-[10px] tracking-[1.5px] text-white/30 uppercase mb-2.5">
-                    Email
-                  </label>
+                  <label htmlFor="email" className={labelClass}>Email</label>
                   <input
+                    id="email"
+                    name="email"
                     type="email"
                     required
+                    autoComplete="email"
                     placeholder="you@company.com"
-                    className="w-full bg-white/[0.03] border border-white/[0.08] text-white px-4 py-3.5 text-[15px] font-[400] outline-none transition-colors duration-300 focus:border-white/25 placeholder:text-white/20 font-sans"
+                    className={inputClass}
                   />
                 </div>
 
                 <div>
-                  <label className="block font-mono text-[10px] tracking-[1.5px] text-white/30 uppercase mb-2.5">
-                    Service
-                  </label>
+                  <label htmlFor="service" className={labelClass}>Service</label>
                   <select
+                    id="service"
+                    name="service"
+                    defaultValue=""
                     className="w-full bg-white/[0.03] border border-white/[0.08] text-white/60 px-4 py-3.5 text-[15px] font-[400] outline-none transition-colors duration-300 focus:border-white/25 font-sans appearance-none"
                     style={{ background: 'rgba(255,255,255,0.03)' }}
                   >
@@ -151,26 +197,42 @@ export function ContactSection() {
                 </div>
 
                 <div>
-                  <label className="block font-mono text-[10px] tracking-[1.5px] text-white/30 uppercase mb-2.5">
-                    Message
-                  </label>
+                  <label htmlFor="message" className={labelClass}>Message</label>
                   <textarea
+                    id="message"
+                    name="message"
                     required
+                    minLength={10}
                     rows={5}
                     placeholder="Tell us about your project or challenge…"
-                    className="w-full bg-white/[0.03] border border-white/[0.08] text-white px-4 py-3.5 text-[15px] font-[400] outline-none transition-colors duration-300 focus:border-white/25 placeholder:text-white/20 font-sans resize-none"
+                    className={inputClass + ' resize-none'}
                   />
                 </div>
 
+                {status === 'error' && (
+                  <div role="alert" className="border border-white/15 bg-white/[0.03] px-4 py-3.5">
+                    <p className="text-[13px] text-white/70 leading-relaxed">
+                      {errorMessage}{' '}
+                      <a href="mailto:marcelo@octava.cloud" className="underline underline-offset-4 text-white">
+                        marcelo@octava.cloud
+                      </a>
+                    </p>
+                  </div>
+                )}
+
                 <motion.button
                   type="submit"
-                  disabled={loading}
+                  disabled={status === 'loading'}
                   className="self-start bg-white text-[#050505] px-8 py-4 text-[14px] font-bold tracking-[0.3px] disabled:opacity-60 transition-all duration-300 mt-2"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  {loading ? 'Sending…' : 'Send Message →'}
+                  {status === 'loading' ? 'Sending…' : 'Send Message →'}
                 </motion.button>
+
+                <p className="font-mono text-[10px] tracking-[1px] text-white/20 uppercase">
+                  No newsletters. No spam. Just a reply from Marcelo.
+                </p>
               </form>
             )}
           </motion.div>

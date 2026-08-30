@@ -130,33 +130,28 @@ Vercel detects the push → builds → deploys in ~60 seconds. Done.
 
 ## Contact Form
 
-The form currently simulates submission. To wire it up for real:
+The form posts to `src/app/api/contact/route.ts`, which validates the submission
+(honeypot + rate limit + field checks) and emails it via [Resend](https://resend.com).
+Until the API key is set, the form shows a friendly "not live yet — email us directly"
+message, so nothing silently breaks.
 
-### Formspree (easiest — free tier, no backend)
+### Activate in ~10 minutes
 
-1. Sign up at [formspree.io](https://formspree.io)
-2. Create a form → copy your form ID (e.g. `xpzvgkja`)
-3. In `src/components/sections/ContactSection.tsx`, replace `handleSubmit`:
+1. Sign up at [resend.com](https://resend.com) (free tier: 3,000 emails/month).
+2. **Domains → Add domain → `octava.cloud`** and add the DNS records Resend shows
+   (SPF/DKIM TXT + MX). Wait for "Verified".
+3. **API Keys → Create** → copy the `re_…` key.
+4. Vercel → project → **Settings → Environment Variables** — add:
+   - `RESEND_API_KEY` = the key
+   - `CONTACT_TO_EMAIL` = `marcelo@octava.cloud`
+   - `CONTACT_FROM_EMAIL` = `Octava Website <hello@octava.cloud>`
+5. **Redeploy** (Deployments → ⋯ → Redeploy). Submit the form on the live site —
+   the enquiry lands in your inbox with the sender as reply-to.
 
-```tsx
-const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-  e.preventDefault()
-  setLoading(true)
-  const data = new FormData(e.currentTarget)
-  await fetch('https://formspree.io/f/YOUR_FORM_ID', {
-    method: 'POST',
-    body: data,
-    headers: { Accept: 'application/json' },
-  })
-  setLoading(false)
-  setSubmitted(true)
-}
-```
+Skipping domain verification: Resend's `onboarding@resend.dev` sender only delivers
+to the email address that owns the Resend account, so verify the domain for production.
 
-4. Add `name="..."` attributes to each `<input>` and `<textarea>` in the form
-5. Push → Vercel deploys → form emails land in your inbox
-
----
+See `.env.example` for local development.
 
 ## Customisation
 
