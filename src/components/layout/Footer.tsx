@@ -5,6 +5,7 @@ const footerLinks = [
   { href: '/#services', label: 'Services' },
   { href: '/#capabilities', label: 'Capabilities' },
   { href: '/#projects', label: 'Projects' },
+  { href: '/#products', label: 'Products' },
   { href: '/#about', label: 'About' },
   { href: '/#contact', label: 'Contact' },
 ]
@@ -30,7 +31,7 @@ export function Footer() {
               </span>
             </div>
             <p className="text-white/35 text-[13px] leading-relaxed font-normal">
-              Premium Azure cloud engineering and AI automation. Built in Brisbane, deployed globally.
+              We design, build and run cloud software — products, platforms, and AI. Built in Brisbane, deployed globally.
             </p>
           </div>
 

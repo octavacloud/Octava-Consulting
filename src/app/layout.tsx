@@ -20,13 +20,18 @@ const dmMono = DM_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Octava Cloud — Azure Cloud, DevOps & AI',
+    default: 'Octava — Cloud Product Engineering, Azure & AI',
     template: '%s | Octava Cloud',
   },
   description:
-    'Premium Azure cloud engineering and AI automation solutions for modern businesses and government. Brisbane-based cloud consultancy specialising in Azure, DevOps automation and AI.',
+    'Octava designs, builds and runs cloud software — product engineering, sovereign Azure platforms, DevOps automation and AI for business and government. Built in Brisbane, deployed anywhere.',
   keywords: [
     'Azure cloud engineering',
+    'cloud product engineering',
+    'app development Brisbane',
+    'software product development',
+    'SaaS development Australia',
+    'AI application development',
     'DevOps automation',
     'AI automation',
     'cloud consulting',
@@ -47,9 +52,9 @@ export const metadata: Metadata = {
     locale: 'en_AU',
     url: 'https://octava.cloud',
     siteName: 'Octava Consulting',
-    title: 'Octava Consulting — Azure Cloud, DevOps & AI',
+    title: 'Octava — Cloud Product Engineering, Azure & AI',
     description:
-      'Premium Azure cloud engineering and AI automation solutions for modern businesses and government. Built in Brisbane, deployed anywhere.',
+      'We design, build and run cloud software — products, platforms, and AI. Built in Brisbane, deployed anywhere.',
     images: [
       {
         url: '/images/og-image.png',
@@ -61,9 +66,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Octava Consulting — Azure Cloud, DevOps & AI',
+    title: 'Octava — Cloud Product Engineering, Azure & AI',
     description:
-      'Premium Azure cloud engineering and AI automation solutions. Built in Brisbane, deployed anywhere.',
+      'We design, build and run cloud software. Built in Brisbane, deployed anywhere.',
     images: ['/images/og-image.png'],
   },
   robots: {

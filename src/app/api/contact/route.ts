@@ -12,6 +12,7 @@ const FROM_EMAIL = process.env.CONTACT_FROM_EMAIL ?? 'Octava Website <onboarding
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
 const SERVICES: Record<string, string> = {
+  product: 'Product Build — new app',
   azure: 'Azure Cloud Engineering',
   devops: 'DevOps Automation',
   ai: 'AI Automation',

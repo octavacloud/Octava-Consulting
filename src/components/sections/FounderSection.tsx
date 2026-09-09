@@ -84,7 +84,7 @@ export function FounderSection() {
             <div className="flex items-center gap-3 mt-6">
               <div className="w-10 h-px bg-white/15" />
               <span className="font-mono text-[11px] tracking-[1px] text-white/25 uppercase">
-                Octava Consulting
+                Octava — Design · Build · Run
               </span>
             </div>
           </motion.div>
@@ -102,13 +102,14 @@ export function FounderSection() {
             </h2>
 
             <p className="text-[16px] text-white/42 leading-[1.8] font-normal mb-6">
-              Octava Consulting is led by a Brisbane-based Azure cloud engineer helping
-              organisations modernise their cloud infrastructure, automation, and AI capabilities.
+              Octava is a Brisbane-based engineering company that ships its own products —
+              MeridianLogix and CertifyMe — and builds cloud platforms, automation, and AI
+              capabilities for client teams.
             </p>
 
             <p className="text-[16px] text-white/38 leading-[1.8] font-normal mb-10">
               We work with government agencies, enterprise teams, and forward-thinking SMBs who
-              need senior technical expertise without the overhead of a large consulting firm.
+              need senior product and platform engineering without the overhead of a large consulting firm.
             </p>
 
             {/* Location pill */}
@@ -129,7 +130,7 @@ export function FounderSection() {
                 Focus Areas
               </p>
               <div className="flex flex-wrap gap-3">
-                {['Microsoft Azure', 'Government Sector', 'Enterprise AI', 'Australia-wide'].map(cert => (
+                {['Product Engineering', 'Microsoft Azure', 'Government Sector', 'Enterprise AI', 'Australia-wide'].map(cert => (
                   <span
                     key={cert}
                     className="border border-white/[0.08] font-mono text-[11px] tracking-[0.5px] text-white/30 px-3 py-1.5"

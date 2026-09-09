@@ -5,18 +5,20 @@ import { motion, useInView } from 'framer-motion'
 import { SectionLabel } from '@/components/ui/SectionLabel'
 
 const capabilities = [
+  'Product Design & Delivery',
+  'Web, Mobile & SaaS Platforms',
+  'AI Product Engineering',
   'Azure Architecture & Migration',
   'Cloud Security & Compliance',
   'Infrastructure as Code',
   'Kubernetes & Container Platforms',
-  'AI Integration & Automation',
   'Government Cloud Frameworks',
   'FinOps & Cost Optimisation',
   '24/7 Monitoring & Observability',
 ]
 
 const stats = [
-  { value: '100%', label: 'Azure focused' },
+  { value: '02', label: 'Products in production' },
   { value: 'AU', label: 'Sovereign hosting' },
   { value: '24h', label: 'Response time' },
 ]

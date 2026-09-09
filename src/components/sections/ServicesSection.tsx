@@ -8,10 +8,24 @@ import { SectionLabel } from '@/components/ui/SectionLabel'
 const services = [
   {
     number: '01',
-    name: 'Azure Cloud Engineering',
+    name: 'Product Engineering',
     description:
-      'Architecture, migration, and optimisation of enterprise Azure environments. Landing zones, governance, and cloud-native infrastructure designed for scale and security.',
-    tags: ['Landing Zones', 'Governance', 'FinOps', 'Security'],
+      'End-to-end product builds — discovery, design, engineering, launch, and operations. Web, mobile, and AI products taken from idea to production, the way we built MeridianLogix and CertifyMe.',
+    tags: ['Web & Mobile', 'SaaS Platforms', 'MVP to Scale', 'Launch & Operate'],
+    icon: (
+      <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1" className="w-full h-full">
+        <path d="M24 5l16 8-16 8-16-8 16-8z" />
+        <path d="M8 23l16 8 16-8" />
+        <path d="M8 33l16 8 16-8" />
+      </svg>
+    ),
+  },
+  {
+    number: '02',
+    name: 'Azure Cloud Platforms',
+    description:
+      'Architecture, migration, and optimisation of enterprise Azure environments. Landing zones, governance, sovereignty, and cloud-native infrastructure designed for scale and security.',
+    tags: ['Landing Zones', 'Governance', 'Security', 'FinOps'],
     icon: (
       <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1" className="w-full h-full">
         <rect x="8" y="28" width="32" height="14" />
@@ -22,8 +36,8 @@ const services = [
     ),
   },
   {
-    number: '02',
-    name: 'DevOps Automation',
+    number: '03',
+    name: 'DevOps & Automation',
     description:
       'CI/CD pipelines, infrastructure as code, and platform engineering. Transform manual processes into automated, reliable, auditable delivery systems.',
     tags: ['Terraform', 'CI/CD Pipelines', 'Bicep', 'GitHub Actions'],
@@ -37,11 +51,11 @@ const services = [
     ),
   },
   {
-    number: '03',
-    name: 'AI Automation',
+    number: '04',
+    name: 'AI & Data',
     description:
-      'Intelligent workflow automation powered by Azure AI services. From document processing to agentic systems that fundamentally transform business operations.',
-    tags: ['Azure OpenAI', 'Copilot', 'AI Agents', 'ML Ops'],
+      'Intelligent workflows and AI features powered by Azure AI — document processing, retrieval, and agentic systems, built into your operations or into the products we ship.',
+    tags: ['Azure OpenAI', 'AI Agents', 'Document Intelligence', 'ML Ops'],
     icon: (
       <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1" className="w-full h-full">
         <path d="M12 36l8-16 6 8 4-6 6 14" />
@@ -69,7 +83,7 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
   return (
     <motion.div
       ref={cardRef}
-      className="relative bg-[#050505] border-r border-white/[0.06] last:border-r-0 p-10 md:p-12 overflow-hidden group"
+      className="relative bg-[#050505] border-b border-r border-white/[0.06] p-10 md:p-12 overflow-hidden group"
       style={{ perspective: 800 }}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
@@ -167,7 +181,7 @@ export function ServicesSection() {
         </motion.h2>
 
         {/* Grid with separator lines */}
-        <div className="grid grid-cols-1 md:grid-cols-3 border border-white/[0.06]">
+        <div className="grid grid-cols-1 md:grid-cols-2 border-t border-l border-white/[0.06]">
           {services.map((service, i) => (
             <ServiceCard key={service.number} service={service} index={i} />
           ))}

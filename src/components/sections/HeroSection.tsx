@@ -90,7 +90,7 @@ export function HeroSection() {
     }
   }, [])
 
-  const headlineLines = ['Cloud.', 'DevOps.', 'AI.']
+  const headlineLines = ['Design.', 'Build.', 'Run.']
 
   return (
     <section
@@ -180,7 +180,7 @@ export function HeroSection() {
             animate={{ opacity: [1, 0.15, 1] }}
             transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
           />
-          Azure Cloud Consulting — Australia-wide, from Brisbane
+          Cloud Product Engineering — Australia-wide, from Brisbane
         </motion.div>
 
         {/* Headline */}
@@ -210,7 +210,7 @@ export function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
-          Premium Azure cloud engineering and AI automation solutions for modern businesses and government.
+          We design, build and run cloud software — from sovereign Azure platforms for government to AI products like MeridianLogix and CertifyMe.
         </motion.p>
 
         {/* CTAs */}
@@ -227,10 +227,10 @@ export function HeroSection() {
             Book a Consultation
           </Link>
           <Link
-            href="/#services"
+            href="/#products"
             className="border border-white/20 text-white px-8 py-4 text-[14px] font-semibold tracking-[0.3px] hover:border-white/45 hover:bg-white/[0.03] transition-all duration-300 inline-block"
           >
-            View Services
+            See what we've built
           </Link>
         </motion.div>
 

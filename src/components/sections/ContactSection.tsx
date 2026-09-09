@@ -189,6 +189,7 @@ export function ContactSection() {
                     style={{ background: 'rgba(255,255,255,0.03)' }}
                   >
                     <option value="" style={{ background: '#050505' }}>Select a service…</option>
+                    <option value="product" style={{ background: '#050505' }}>Product Build — new app</option>
                     <option value="azure" style={{ background: '#050505' }}>Azure Cloud Engineering</option>
                     <option value="devops" style={{ background: '#050505' }}>DevOps Automation</option>
                     <option value="ai" style={{ background: '#050505' }}>AI Automation</option>
