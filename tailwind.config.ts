@@ -12,12 +12,22 @@ const config: Config = {
         sans: ['var(--font-syne)', 'system-ui', 'sans-serif'],
         mono: ['var(--font-dm-mono)', 'monospace'],
       },
+      // Theme-aware colours. `white` is remapped to the theme foreground so every
+      // existing `text-white/40`, `border-white/[0.06]` etc. flips with the theme.
+      // Light (default): near-black on white. Dark: white on #050505.
+      // Text gets its own, stronger lift in light mode so grey copy stays readable
+      // on white (e.g. text-white/40 → ~82% black). Borders/backgrounds use `colors.white`.
+      textColor: {
+        white: 'rgb(var(--fg) / min(1, calc(<alpha-value> * var(--text-boost) + var(--text-lift))))',
+      },
       colors: {
-        background: '#050505',
-        'text-primary': '#FFFFFF',
-        'text-secondary': '#A1A1AA',
-        border: 'rgba(255,255,255,0.08)',
-        card: 'rgba(255,255,255,0.03)',
+        // --fg-boost lifts low-opacity tints in light mode, where they read fainter.
+        white: 'rgb(var(--fg) / min(1, calc(<alpha-value> * var(--fg-boost))))',
+        background: 'rgb(var(--bg) / <alpha-value>)',
+        'text-primary': 'rgb(var(--fg) / <alpha-value>)',
+        'text-secondary': 'rgb(var(--fg) / 0.6)',
+        border: 'rgb(var(--fg) / 0.08)',
+        card: 'rgb(var(--fg) / 0.03)',
       },
       animation: {
         'fade-up': 'fadeUp 0.8s cubic-bezier(0.16,1,0.3,1) both',

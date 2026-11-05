@@ -24,7 +24,7 @@ export function Footer() {
                 alt="Octava"
                 width={28}
                 height={28}
-                className="w-6 h-6 object-contain opacity-60"
+                className="theme-invert w-6 h-6 object-contain opacity-60"
               />
               <span className="text-white font-bold text-[17px] tracking-[-0.3px]">
                 Octava<span className="text-white/25">.cloud</span>

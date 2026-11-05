@@ -83,7 +83,7 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
   return (
     <motion.div
       ref={cardRef}
-      className="relative bg-[#050505] border-b border-r border-white/[0.06] p-10 md:p-12 overflow-hidden group"
+      className="relative bg-background border-b border-r border-white/[0.06] p-10 md:p-12 overflow-hidden group"
       style={{ perspective: 800 }}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
@@ -105,7 +105,7 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
       <motion.div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'radial-gradient(circle at 50% 0%, rgba(255,255,255,0.04) 0%, transparent 60%)',
+          background: 'radial-gradient(circle at 50% 0%, rgb(var(--fg) / 0.04) 0%, transparent 60%)',
         }}
         animate={{ opacity: isHovered ? 1 : 0 }}
         transition={{ duration: 0.4 }}

@@ -42,7 +42,7 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
   if (!product) notFound()
 
   return (
-    <main className="min-h-screen bg-[#050505] text-white">
+    <main className="min-h-screen bg-background text-white">
       <Navbar />
 
       {/* Hero */}
@@ -74,7 +74,7 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
               href={product.externalUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-white text-[#050505] px-7 py-4 text-[14px] font-bold tracking-[0.3px] hover:bg-white/90 transition-colors"
+              className="inline-flex items-center gap-2 bg-white text-background px-7 py-4 text-[14px] font-bold tracking-[0.3px] hover:bg-white/90 transition-colors"
             >
               {product.externalCta} <ArrowUpRight size={15} />
             </a>
@@ -198,7 +198,7 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
             </h2>
             <Link
               href="/#contact"
-              className="inline-block bg-white text-[#050505] px-8 py-4 text-[14px] font-bold tracking-[0.3px] hover:bg-white/90 transition-colors"
+              className="inline-block bg-white text-background px-8 py-4 text-[14px] font-bold tracking-[0.3px] hover:bg-white/90 transition-colors"
             >
               Talk to Octava →
             </Link>

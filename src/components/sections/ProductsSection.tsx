@@ -11,7 +11,7 @@ import { products, type Product } from '@/data/products'
 export function ProductLogo({ product, size = 'card' }: { product: Product; size?: 'card' | 'hero' }) {
   const isSquare = product.logo.width === product.logo.height
   const tile = size === 'hero' ? 'h-24 px-7' : 'h-16 px-5'
-  const bg = product.logo.bg === 'light' ? 'bg-white' : 'bg-[#0a0a0a] border border-white/[0.08]'
+  const bg = product.logo.bg === 'light' ? 'bg-[#ffffff] border border-white/[0.08]' : 'bg-[#0a0a0a] border border-white/[0.08]'
   const imgH = size === 'hero' ? (isSquare ? 'h-14' : 'h-10') : (isSquare ? 'h-9' : 'h-7')
   return (
     <div className={`inline-flex items-center justify-center ${tile} ${bg}`}>
@@ -30,7 +30,7 @@ export function ProductLogo({ product, size = 'card' }: { product: Product; size
 function ProductCard({ product, index }: { product: Product; index: number }) {
   return (
     <motion.article
-      className="group relative bg-[#050505] p-12 md:p-14 border-b border-r border-white/[0.06] min-h-[420px] flex flex-col justify-between overflow-hidden"
+      className="group relative bg-background p-12 md:p-14 border-b border-r border-white/[0.06] min-h-[420px] flex flex-col justify-between overflow-hidden"
       initial={{ opacity: 0, y: 32 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
@@ -40,7 +40,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
       <div
         className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"
         style={{
-          background: `radial-gradient(circle at ${index % 2 === 0 ? '25% 30%' : '75% 70%'}, rgba(255,255,255,0.035) 0%, transparent 60%)`,
+          background: `radial-gradient(circle at ${index % 2 === 0 ? '25% 30%' : '75% 70%'}, rgb(var(--fg) / 0.035) 0%, transparent 60%)`,
         }}
       />
 

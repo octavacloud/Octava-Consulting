@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { Syne, DM_Mono } from 'next/font/google'
 import './globals.css'
 import { CustomCursor } from '@/components/ui/CustomCursor'
+import { themeInitScript } from '@/components/ui/ThemeToggle'
 
 const syne = Syne({
   subsets: ['latin'],
@@ -92,8 +93,7 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: '#050505',
-  colorScheme: 'dark',
+  themeColor: '#ffffff',
   width: 'device-width',
   initialScale: 1,
 }
@@ -104,7 +104,10 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${syne.variable} ${dmMono.variable}`}>
+    <html lang="en" data-theme="light" className={`${syne.variable} ${dmMono.variable}`} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
       <body className="bg-background text-white font-sans antialiased">
         <CustomCursor />
         {children}

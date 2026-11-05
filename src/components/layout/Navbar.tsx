@@ -5,6 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
+import { ThemeToggle } from '@/components/ui/ThemeToggle'
 
 const navLinks = [
   { href: '/#services', label: 'Services' },
@@ -35,9 +36,9 @@ export function Navbar() {
       <motion.nav
         className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 md:px-12 h-[72px] transition-colors duration-300"
         style={{
-          background: scrolled ? 'rgba(5,5,5,0.95)' : 'transparent',
+          background: scrolled ? 'rgb(var(--bg) / 0.95)' : 'transparent',
           backdropFilter: scrolled ? 'blur(12px)' : 'none',
-          borderBottom: scrolled ? '1px solid rgba(255,255,255,0.04)' : '1px solid transparent',
+          borderBottom: scrolled ? '1px solid rgb(var(--fg) / 0.04)' : '1px solid transparent',
         }}
         initial={{ opacity: 0, y: -16 }}
         animate={{ opacity: 1, y: 0 }}
@@ -50,7 +51,7 @@ export function Navbar() {
             alt="Octava Consulting"
             width={32}
             height={32}
-            className="w-7 h-7 object-contain transition-opacity group-hover:opacity-70"
+            className="theme-invert w-7 h-7 object-contain transition-opacity group-hover:opacity-70"
             priority
           />
           <span className="text-white font-bold text-[17px] tracking-[-0.3px]">
@@ -74,6 +75,7 @@ export function Navbar() {
 
         {/* CTA */}
         <div className="hidden md:flex items-center gap-4">
+          <ThemeToggle />
           <Link
             href="/#contact"
             className="border border-white/12 hover:border-white/30 hover:bg-white/5 text-white text-[13px] font-semibold tracking-[0.3px] px-5 py-2.5 transition-all duration-300"
@@ -82,21 +84,24 @@ export function Navbar() {
           </Link>
         </div>
 
-        {/* Mobile Menu Button */}
-        <button
-          className="md:hidden text-white/70 hover:text-white transition-colors"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Toggle menu"
-        >
-          {mobileOpen ? <X size={22} /> : <Menu size={22} />}
-        </button>
+        {/* Mobile: theme toggle + menu button */}
+        <div className="md:hidden flex items-center gap-3">
+          <ThemeToggle />
+          <button
+            className="text-white/70 hover:text-white transition-colors"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label="Toggle menu"
+          >
+            {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
       </motion.nav>
 
       {/* Mobile Menu */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            className="fixed inset-0 z-40 bg-[#050505] flex flex-col pt-[72px]"
+            className="fixed inset-0 z-40 bg-background flex flex-col pt-[72px]"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
@@ -128,7 +133,7 @@ export function Navbar() {
                 <Link
                   href="/#contact"
                   onClick={() => setMobileOpen(false)}
-                  className="inline-block bg-white text-[#050505] px-8 py-4 font-bold text-[15px] tracking-[0.3px] hover:bg-white/88 transition-colors"
+                  className="inline-block bg-white text-background px-8 py-4 font-bold text-[15px] tracking-[0.3px] hover:bg-white/88 transition-colors"
                 >
                   Book a Consultation
                 </Link>

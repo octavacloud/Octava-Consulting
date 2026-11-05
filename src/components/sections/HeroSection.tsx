@@ -23,6 +23,13 @@ export function HeroSection() {
       x: number; y: number; vx: number; vy: number; size: number; opacity: number
     }[] = []
 
+    // Canvas can't read CSS vars directly — resolve the theme foreground and track theme switches
+    const readFg = () =>
+      getComputedStyle(document.documentElement).getPropertyValue('--fg').trim().split(/\s+/).join(',') || '255,255,255'
+    let fg = readFg()
+    const themeObserver = new MutationObserver(() => { fg = readFg() })
+    themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] })
+
     const resize = () => {
       canvas.width = window.innerWidth
       canvas.height = window.innerHeight
@@ -30,7 +37,7 @@ export function HeroSection() {
 
     const drawGrid = () => {
       const size = 60
-      ctx.strokeStyle = 'rgba(255,255,255,0.035)'
+      ctx.strokeStyle = `rgba(${fg},0.035)`
       ctx.lineWidth = 1
       for (let x = 0; x <= canvas.width; x += size) {
         ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height); ctx.stroke()
@@ -38,7 +45,7 @@ export function HeroSection() {
       for (let y = 0; y <= canvas.height; y += size) {
         ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke()
       }
-      ctx.fillStyle = 'rgba(255,255,255,0.07)'
+      ctx.fillStyle = `rgba(${fg},0.07)`
       for (let x = 0; x <= canvas.width; x += size) {
         for (let y = 0; y <= canvas.height; y += size) {
           ctx.beginPath(); ctx.arc(x, y, 1, 0, Math.PI * 2); ctx.fill()
@@ -72,7 +79,7 @@ export function HeroSection() {
         if (p.y > canvas.height) p.y = 0
         ctx.beginPath()
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(255,255,255,${p.opacity})`
+        ctx.fillStyle = `rgba(${fg},${p.opacity})`
         ctx.fill()
       })
       raf = requestAnimationFrame(animate)
@@ -86,6 +93,7 @@ export function HeroSection() {
     window.addEventListener('resize', handleResize)
     return () => {
       cancelAnimationFrame(raf)
+      themeObserver.disconnect()
       window.removeEventListener('resize', handleResize)
     }
   }, [])
@@ -111,7 +119,7 @@ export function HeroSection() {
         style={{
           width: 700,
           height: 700,
-          background: 'radial-gradient(circle, rgba(255,255,255,0.055) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgb(var(--fg) / 0.055) 0%, transparent 70%)',
           top: '50%',
           left: '50%',
           translateX: '-50%',
@@ -158,7 +166,7 @@ export function HeroSection() {
           src="/images/logo-icon-nb.png"
           alt=""
           fill
-          className="object-contain invert brightness-0 invert"
+          className="object-contain theme-invert"
           aria-hidden
         />
       </motion.div>
@@ -222,7 +230,7 @@ export function HeroSection() {
         >
           <Link
             href="/#contact"
-            className="bg-white text-[#050505] px-8 py-4 text-[14px] font-bold tracking-[0.3px] hover:bg-white/88 transition-colors duration-300 inline-block"
+            className="bg-white text-background px-8 py-4 text-[14px] font-bold tracking-[0.3px] hover:bg-white/88 transition-colors duration-300 inline-block"
           >
             Book a Consultation
           </Link>

@@ -66,7 +66,7 @@ export function FounderSection() {
                     src="/images/logo-icon-nb.png"
                     alt=""
                     fill
-                    className="object-contain opacity-30"
+                    className="object-contain opacity-30 theme-invert"
                     aria-hidden
                   />
                 </motion.div>

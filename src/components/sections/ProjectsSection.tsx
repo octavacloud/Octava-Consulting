@@ -60,7 +60,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
   return (
     <motion.div
       ref={cardRef}
-      className="relative bg-[#050505] p-12 md:p-14 overflow-hidden group min-h-[340px] flex flex-col justify-between border-b border-r border-white/[0.06]"
+      className="relative bg-background p-12 md:p-14 overflow-hidden group min-h-[340px] flex flex-col justify-between border-b border-r border-white/[0.06]"
       style={{ perspective: 800 }}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
@@ -82,7 +82,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
       <motion.div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: `radial-gradient(circle at ${index % 2 === 0 ? '30% 40%' : '70% 60%'}, rgba(255,255,255,0.03) 0%, transparent 60%)`,
+          background: `radial-gradient(circle at ${index % 2 === 0 ? '30% 40%' : '70% 60%'}, rgb(var(--fg) / 0.03) 0%, transparent 60%)`,
         }}
         animate={{ opacity: isHovered ? 1 : 0 }}
         transition={{ duration: 0.5 }}
@@ -115,9 +115,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
       <div>
         {/* Outcome */}
         <motion.div
-          className="mb-6 px-4 py-3 border-l-2 border-white/20"
-          animate={{ borderColor: isHovered ? 'rgba(255,255,255,0.5)' : 'rgba(255,255,255,0.12)' }}
-          transition={{ duration: 0.3 }}
+          className={`mb-6 px-4 py-3 border-l-2 transition-colors duration-300 ${isHovered ? 'border-white/50' : 'border-white/[0.12]'}`}
         >
           <p className="font-mono text-[11px] tracking-[1px] text-white/30 uppercase mb-0.5">Outcome</p>
           <p className="text-[13px] font-semibold text-white/70">{project.outcome}</p>

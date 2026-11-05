@@ -121,7 +121,7 @@ export function ContactSection() {
                   className="border border-white/10 p-10"
                 >
                   <div className="w-12 h-12 border border-white/30 flex items-center justify-center mb-6">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="white" strokeWidth="1.5">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" className="text-white" strokeWidth="1.5">
                       <path d="M4 10l4.5 4.5L16 6" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                   </div>
@@ -186,14 +186,14 @@ export function ContactSection() {
                     name="service"
                     defaultValue=""
                     className="w-full bg-white/[0.03] border border-white/[0.08] text-white/60 px-4 py-3.5 text-[15px] font-[400] outline-none transition-colors duration-300 focus:border-white/25 font-sans appearance-none"
-                    style={{ background: 'rgba(255,255,255,0.03)' }}
+                    style={{ background: 'rgb(var(--fg) / 0.03)' }}
                   >
-                    <option value="" style={{ background: '#050505' }}>Select a service…</option>
-                    <option value="product" style={{ background: '#050505' }}>Product Build — new app</option>
-                    <option value="azure" style={{ background: '#050505' }}>Azure Cloud Engineering</option>
-                    <option value="devops" style={{ background: '#050505' }}>DevOps Automation</option>
-                    <option value="ai" style={{ background: '#050505' }}>AI Automation</option>
-                    <option value="general" style={{ background: '#050505' }}>General Enquiry</option>
+                    <option value="" style={{ background: 'rgb(var(--bg))' }}>Select a service…</option>
+                    <option value="product" style={{ background: 'rgb(var(--bg))' }}>Product Build — new app</option>
+                    <option value="azure" style={{ background: 'rgb(var(--bg))' }}>Azure Cloud Engineering</option>
+                    <option value="devops" style={{ background: 'rgb(var(--bg))' }}>DevOps Automation</option>
+                    <option value="ai" style={{ background: 'rgb(var(--bg))' }}>AI Automation</option>
+                    <option value="general" style={{ background: 'rgb(var(--bg))' }}>General Enquiry</option>
                   </select>
                 </div>
 
@@ -224,7 +224,7 @@ export function ContactSection() {
                 <motion.button
                   type="submit"
                   disabled={status === 'loading'}
-                  className="self-start bg-white text-[#050505] px-8 py-4 text-[14px] font-bold tracking-[0.3px] disabled:opacity-60 transition-all duration-300 mt-2"
+                  className="self-start bg-white text-background px-8 py-4 text-[14px] font-bold tracking-[0.3px] disabled:opacity-60 transition-all duration-300 mt-2"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
